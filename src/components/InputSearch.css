@@ -1,0 +1,16 @@
+.input-search{
+    padding-left: 10px;
+    width: 70vw;
+    height: 32px;
+    outline: none;
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: rgb(58, 58, 58);
+    color: white;
+}
+
+.input-search{
+    border: none;
+    outline-color: purple;
+}
+
