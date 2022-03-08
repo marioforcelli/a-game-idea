@@ -5,10 +5,11 @@
   font-family: 'Heebo', sans-serif;
 }
 
+
 .App{
   display: block;
   background-color: black;
-  height: 100vh;
+  height: 100%;
 }
 
 .header{
@@ -17,3 +18,12 @@
   justify-content: center;
 }
 
+.main-content{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+main{
+  height: 100%;
+}

@@ -4,6 +4,6 @@ export async function GetList(string){
 
     let response = await fetch(`https://api.rawg.io/api/games?search=${string}&key=${apiSecret}`);
     let json = await response.json();
-    return json
+    return json.results
 
 }

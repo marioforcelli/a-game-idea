@@ -1,0 +1,29 @@
+.card{
+    height: 350px;
+    width: 380px;
+    margin-top: 40px;
+    background-color: #151515;
+    border-radius: 10px;
+    color: white;
+    margin: 20px;
+    
+}
+
+
+.card-top{
+    height: 65%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px 10px 0px 0px;
+
+}
+
+
+
+.card-bottom{
+    height: 35%;
+    padding: 10px;
+    font-size: 12px;
+}
