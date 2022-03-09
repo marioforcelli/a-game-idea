@@ -1,16 +1,48 @@
+.input-search-div{
+    background-color: rgb(58, 58, 58);
+    display: flex;
+
+    width: 90vw;
+    height: 45px;
+    transition: height 0.8s ;
+    border-radius: 10px;
+
+}
+
+.input-search-div img{
+    height: 24px;
+    width: 24px;
+    align-self: center;
+    margin-left: 10px;
+}
+
 .input-search{
-    padding-left: 10px;
-    width: 70vw;
-    height: 32px;
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
     outline: none;
     font-size: 14px;
-    border-radius: 10px;
     background-color: rgb(58, 58, 58);
-    color: white;
-}
-
-.input-search{
+    color: inherit;
+    transition: height 5s ;
     border: none;
-    outline-color: purple;
+    
 }
 
+.input-search-div:hover .input-search , .input-search-div:hover{
+    height: 55px; background-color: white;
+}
+
+
+
+.delete-input{
+    font-size: 25px;
+    align-self: center;
+    margin-right: 10px;
+}
+
+.delete-input:hover{
+    cursor: pointer
+
+}

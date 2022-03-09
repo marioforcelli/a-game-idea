@@ -1,8 +1,16 @@
 import './InputSearch.css'
+import loupe from '../assets/loupe.png'
 
-export function InputSearch({children, onChange}){
+
+
+export function InputSearch({children, onChange, onClickDelete}){
     return(
-        <input onChange={onChange} className="input-search">{children}</input>
+        <div className="input-search-div">
+            <img src={loupe}></img>
+            <input placeholder='Busque pelo jogo' onChange={onChange} className="input-search"></input>
+            <div onClick={onClickDelete} className='delete-input'>X</div>
+        </div>
+        
     )
 
 }
