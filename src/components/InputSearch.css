@@ -1,22 +1,23 @@
 .input-search-div{
     background-color: rgb(58, 58, 58);
     display: flex;
-
+    transition: background-color 0.4s;
     width: 90vw;
     height: 45px;
-    transition: height 0.8s ;
     border-radius: 10px;
 
 }
 
 .input-search-div img{
     height: 24px;
-    width: 24px;
+    width: 24px;    
     align-self: center;
     margin-left: 10px;
+    color: white;
 }
 
 .input-search{
+    transition: background-color 0.4s;
     margin-left: 10px;
     border-radius: 10px;
     width: 100%;
@@ -25,13 +26,12 @@
     font-size: 14px;
     background-color: rgb(58, 58, 58);
     color: inherit;
-    transition: height 5s ;
     border: none;
     
 }
 
 .input-search-div:hover .input-search , .input-search-div:hover{
-    height: 55px; background-color: white;
+    background-color: white;
 }
 
 

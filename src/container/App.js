@@ -13,18 +13,22 @@ function App() {
   const [firstLoad, setFirstLoad] = useState(true)
 
   useEffect(() =>{
+    console.log(list)
     setList([])
+
     if (inputValue !== ''){
       GetList(inputValue).then(list => setList(list))
-      
-    
+    }
+
+    if(inputValue === ''){
+      GetListOrderingByMetacritic().then(list => {
+        setList(list)})
     }
  
   }, [inputValue])
   
 useEffect(() =>{
   GetListOrderingByMetacritic().then(list => {
-    setFirstLoad(undefined)
     setList(list)})
 
 }, [])
@@ -34,18 +38,23 @@ useEffect(() =>{
     <div className="App">
       <header className="header">
       <InputSearch 
-      onClickDelete={(e)=>{
-        document.querySelector('.input-search').value = ''
+      onClickDelete={()=>{
         setInputValue('')
+
+        console.log(inputValue)
       }}
-      
+      value= {inputValue}
       
       onChange = {
-        (e) => setInputValue(e.target.value)}></InputSearch>
+        (e) => {
+          setInputValue(e.target.value)
+
+        }
+        }></InputSearch>
       </header>
       <main className='main-content'>
 
-        {list.length === 0 && inputValue !== '' || firstLoad? 
+        {list.length === 0? 
         (<div style={{}}><LoadingIco></LoadingIco></div>)
         :   
           list.map((i, index) => {
