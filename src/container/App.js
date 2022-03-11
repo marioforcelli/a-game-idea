@@ -10,27 +10,36 @@ import {ReactComponent as LoadingIco} from '../assets/loading.svg'
 function App() {
   const [list, setList] = useState([]);
   const [inputValue, setInputValue] = useState('')
-  const [firstLoad, setFirstLoad] = useState(true)
+  const [isLoading, setIsLoading] = useState(undefined)
 
   useEffect(() =>{
-    console.log(list)
     setList([])
-
+   
+    console.log('useEffect inputValue', isLoading)
     if (inputValue !== ''){
-      GetList(inputValue).then(list => setList(list))
+      GetList(inputValue).then(list => {
+        setIsLoading(false)
+        setList(list)})
+        setIsLoading(true)
     }
+
+    console.log(list)
 
     if(inputValue === ''){
       GetListOrderingByMetacritic().then(list => {
+        setIsLoading(false)
         setList(list)})
+        setIsLoading(true)
     }
  
   }, [inputValue])
   
 useEffect(() =>{
+  console.log(isLoading)
   GetListOrderingByMetacritic().then(list => {
+    setIsLoading(false)
     setList(list)})
-
+    setIsLoading(true)
 }, [])
   
   return (
@@ -47,22 +56,24 @@ useEffect(() =>{
       
       onChange = {
         (e) => {
-          setInputValue(e.target.value)
+         setInputValue(e.target.value)
 
         }
         }></InputSearch>
       </header>
       <main className='main-content'>
 
-        {list.length === 0? 
+        {list.length === 0  && isLoading?
         (<div style={{}}><LoadingIco></LoadingIco></div>)
-        :   
+        : list.length !== 0 && !isLoading ?
           list.map((i, index) => {
              return  (<Card key={index} platform={i.name} link={i.background_image}></Card>)
             
-          })}
-       
-  
+          } 
+          
+          )
+          : (null)
+          }
 
       </main>
 
