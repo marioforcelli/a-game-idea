@@ -36,9 +36,11 @@ body{
 
 .main-content{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content:center;
+  align-items: flex-start;
   flex-wrap: wrap;
   height: auto;
+  padding: 40px;
 }
 

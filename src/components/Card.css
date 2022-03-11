@@ -1,16 +1,22 @@
 .card{
     height: 350px;
+    margin: 20px;
     width: 380px;
-    margin-top: 40px;
     background-color: #151515;
     border-radius: 10px;
     color: white;
-    margin: 20px;
+    transition: width 1s;
+    transition: height 4s;
+    transition: bottom 1s;
+    transition: all .5s ease-in-out;
+    z-index: 1;
+    margin-bottom: 20px;
     
 }
 
 
 .card-top{
+
     height: 65%;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -22,7 +28,44 @@
 
 
 
+
+
 .card-bottom{
+    display: flex;
     padding: 10px;
-    font-size: 12px;
+    font-size: 30px;
+    font-weight:500;
+    padding: 15px;
+
+}
+
+.bottom-left-infos{
+    flex: 4;
+}
+
+.bottom-right-infos{
+
+    display: flex;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6dc849;
+    flex: 2;
+    justify-content: flex-end;
+    
+}
+
+.bottom-right-meta{
+    display: flex;
+    width: 32px;
+    height: 24px;
+    border: 0.1px solid rgba(109,200,73,.4);
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.card:hover{
+    z-index: 10;
+    transform: scale(1.3);
+
 }

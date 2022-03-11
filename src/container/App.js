@@ -53,7 +53,6 @@ useEffect(() =>{
         console.log(inputValue)
       }}
       value= {inputValue}
-      
       onChange = {
         (e) => {
          setInputValue(e.target.value)
@@ -67,13 +66,21 @@ useEffect(() =>{
         (<div style={{}}><LoadingIco></LoadingIco></div>)
         : list.length !== 0 && !isLoading ?
           list.map((i, index) => {
-             return  (<Card key={index} platform={i.name} link={i.background_image}></Card>)
             
-          } 
-          
-          )
-          : (null)
+             return  (<Card key={index} 
+              index={index}
+              nome={i.name} 
+              link={i.background_image} 
+              nota={i.metacritic} 
+              className={i.metacritic !== null ? 'bottom-right-meta' : null}
+              
+          />
+                )
+              }    
+            )
+            : (null)
           }
+
 
       </main>
 
