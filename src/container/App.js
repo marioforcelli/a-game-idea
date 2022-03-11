@@ -3,42 +3,45 @@ import './App.css';
 import {InputSearch} from '../components/InputSearch'
 import {GetList} from '../services/GetList'
 import { Card } from '../components/Card'
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { GetListOrderingByMetacritic } from '../services/GetListOrderingByMetacritic';
 import {ReactComponent as LoadingIco} from '../assets/loading.svg'
+import {useList} from '../hooks/useList'
+
 
 function App() {
-  const [list, setList] = useState([]);
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(undefined)
+  const [list, listDispatch ] = useList();
 
   useEffect(() =>{
-    setList([])
-   
-    console.log('useEffect inputValue', isLoading)
+    listDispatch({type: 'reset'})  
     if (inputValue !== ''){
       GetList(inputValue).then(list => {
         setIsLoading(false)
-        setList(list)})
+        listDispatch({type:'getInfos', payload: list})})
         setIsLoading(true)
     }
-
-    console.log(list)
 
     if(inputValue === ''){
       GetListOrderingByMetacritic().then(list => {
         setIsLoading(false)
-        setList(list)})
+        listDispatch({type: 'reset'})
+        listDispatch({type:'getInfos', payload: list})})
         setIsLoading(true)
     }
+    console.log(list)
+
+
  
   }, [inputValue])
   
 useEffect(() =>{
   console.log(isLoading)
   GetListOrderingByMetacritic().then(list => {
+    listDispatch({type: 'reset'})
     setIsLoading(false)
-    setList(list)})
+    listDispatch({type:'getInfos', payload: list})})
     setIsLoading(true)
 }, [])
   
@@ -61,27 +64,24 @@ useEffect(() =>{
         }></InputSearch>
       </header>
       <main className='main-content'>
-
-        {list.length === 0  && isLoading?
+        {console.log(list.list)}
+        {list.list.length === 0  && isLoading?
         (<div style={{}}><LoadingIco></LoadingIco></div>)
-        : list.length !== 0 && !isLoading ?
-          list.map((i, index) => {
-            
+        : list.list.length !== 0 && !isLoading ?
+          list.list.map((i, index) => {
+            console.log(i)
              return  (<Card key={index} 
               index={index}
               nome={i.name} 
               link={i.background_image} 
               nota={i.metacritic} 
-              className={i.metacritic !== null ? 'bottom-right-meta' : null}
-              
+              className={i.metacritic !== null ? 'bottom-right-meta' : null} 
           />
                 )
               }    
             )
             : (null)
           }
-
-
       </main>
 
     </div>
