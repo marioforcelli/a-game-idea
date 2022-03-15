@@ -6,11 +6,13 @@ import { Card } from '../components/Card'
 import { useEffect, useState } from 'react';
 import { GetListOrderingByMetacritic } from '../services/GetListOrderingByMetacritic';
 import {ReactComponent as LoadingIco} from '../assets/loading.svg'
+import {AutoComplete} from '../components/AutoComplete'
 
 function App() {
   const [list, setList] = useState([]);
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(undefined)
+  const [isFocused, setIsFocused] = useState(undefined)
 
   useEffect(() =>{
     setList([])
@@ -58,7 +60,30 @@ useEffect(() =>{
          setInputValue(e.target.value)
 
         }
-        }></InputSearch>
+        }
+        onFocus={
+          () => {
+            setIsFocused(true)
+            console.log(isFocused)
+          }
+        }
+
+        onBlur = {
+          () =>{
+            setIsFocused(false)      
+          }
+        }
+        autoCompStyle={
+          () =>{
+            if(isFocused && inputValue){
+              return 'inline-block'
+            }else{
+              return 'none'
+            }
+          }
+        }
+
+        ></InputSearch>
       </header>
       <main className='main-content'>
 

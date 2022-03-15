@@ -46,3 +46,9 @@
     cursor: pointer
 
 }
+
+.toggle{
+    display: none;
+
+    width: 1000px;
+}

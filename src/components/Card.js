@@ -10,7 +10,6 @@ export function Card({link, nome, nota, className, onMouseOver, onMouseOut, inde
                 <div className='bottom-left-infos'>{nome}</div>
                 <div className='bottom-right-infos'>
                     <div className={className}>
-                        {console.log(className)}
                         <span>{nota}</span></div>
                     
                 </div>
