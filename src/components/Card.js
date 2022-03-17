@@ -1,8 +1,12 @@
 
 import  './Card.css'
 export function Card({link, nome, nota, className, onMouseOver, onMouseOut, index}){
+
+    
+    const handleClick = (e) => {return e}
+
     return(
-        <div onMouseOut={onMouseOut} onMouseOver={onMouseOver} className='card' >
+        <div onMouseOut={onMouseOut} onMouseOver={onMouseOver} className='card' onClick={(e) => {console.log(e.target)}}>
              <div className="card-top" style={{backgroundImage: `url(${link})`}}>
 
                 </div>

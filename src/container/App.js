@@ -6,43 +6,30 @@ import { Card } from '../components/Card'
 import { useEffect, useReducer, useState } from 'react';
 import { GetListOrderingByMetacritic } from '../services/GetListOrderingByMetacritic';
 import {ReactComponent as LoadingIco} from '../assets/loading.svg'
-<<<<<<< HEAD
 import {AutoComplete} from '../components/AutoComplete'
-=======
 import {useList} from '../hooks/useList'
 
->>>>>>> 8bb3931f3679b5e925fb79499a86fa0e8971ac15
 
 function App() {
-  const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(undefined)
-<<<<<<< HEAD
-  const [isFocused, setIsFocused] = useState(undefined)
-=======
+  const [data, setData] = useState('')
   const [list, listDispatch ] = useList();
->>>>>>> 8bb3931f3679b5e925fb79499a86fa0e8971ac15
+
+  const childToParent = (childdata) => {
+    setData(childdata);
+  }
 
   useEffect(() =>{
     listDispatch({type: 'reset'})  
-    if (inputValue !== ''){
-      GetList(inputValue).then(list => {
+      GetList(data).then(list => {
         setIsLoading(false)
         listDispatch({type:'getInfos', payload: list})})
         setIsLoading(true)
-    }
 
-    if(inputValue === ''){
-      GetListOrderingByMetacritic().then(list => {
-        setIsLoading(false)
-        listDispatch({type: 'reset'})
-        listDispatch({type:'getInfos', payload: list})})
-        setIsLoading(true)
-    }
-    console.log(list)
 
 
  
-  }, [inputValue])
+  }, [data])
   
 useEffect(() =>{
   console.log(isLoading)
@@ -58,49 +45,58 @@ useEffect(() =>{
     <div className="App">
       <header className="header">
       <InputSearch 
-      onClickDelete={()=>{
-        setInputValue('')
 
-        console.log(inputValue)
-      }}
-      value= {inputValue}
-      onChange = {
-        (e) => {
-         setInputValue(e.target.value)
+      inputToParent={childToParent}
+      // onClickDelete={()=>{
+      //   setInputValue('')
 
-        }
-        }
-        onFocus={
-          () => {
-            setIsFocused(true)
-            console.log(isFocused)
-          }
-        }
+      //   console.log(inputValue)
+      // }}
+      // value= {inputValue}
+      // onChange = {
+      //   (e) => {
+      //    setInputValue(e.target.value)
 
-        onBlur = {
-          () =>{
-            setIsFocused(false)      
-          }
-        }
-        autoCompStyle={
-          () =>{
-            if(isFocused && inputValue){
-              return 'inline-block'
-            }else{
-              return 'none'
-            }
-          }
-        }
+      //   }
+      //   }
+      //   onFocus={
+      //     () => {
+      //       setIsFocused(true)
+      //       console.log(isFocused)
+      //     }
+      //   }
+
+      //   onBlur = {
+      //     () =>{
+      //       setIsFocused(false)      
+      //     }
+      //   }
+      //   autoCompStyle={
+      //     () =>{
+      //       if(isFocused && inputValue){
+      //         return 'inline-block'
+      //       }else{
+      //         // return 'none'
+      //       }
+      //     }
+      //   }
+        autoList={
+        list.list.filter(
+          (item, index ) =>{
+             const reg = new RegExp(`^${data}`, "gi")
+             return item.name.match(reg) && index < 10 && index > 0 }).map((item, i)=> item.name
+          )
+         }
+
+        
 
         ></InputSearch>
       </header>
       <main className='main-content'>
-        {console.log(list.list)}
         {list.list.length === 0  && isLoading?
         (<div style={{}}><LoadingIco></LoadingIco></div>)
         : list.list.length !== 0 && !isLoading ?
           list.list.map((i, index) => {
-            console.log(i)
              return  (<Card key={index} 
               index={index}
               nome={i.name} 
